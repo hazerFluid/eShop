@@ -51,7 +51,6 @@ public class Visitor {
     }
     //</editor-fold>
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

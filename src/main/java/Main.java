@@ -1,10 +1,10 @@
 import dao.entity.Product;
-import dao.impls.ProductDAOImpl;
+import dao.impls.ProductApp;
 
 public class Main {
 
     public static void main(String[] args) {
-        ProductDAOImpl dao = new ProductDAOImpl();
+        ProductApp dao = new ProductApp();
         dao.create(new Product());
     }
 }

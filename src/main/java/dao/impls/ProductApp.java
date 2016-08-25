@@ -8,13 +8,18 @@ import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ProductDAOImpl implements ProductDAO, DAO {
+public class ProductApp implements ProductDAO, DAO<Product> {
 
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
     Logger logger = LoggerFactory.getLogger(Product.class);
 
     @Override
-    public void create(Object object) {
+    public Product get(Class clazz, int id) {
+        return null;
+    }
+
+    @Override
+    public void create(Product object) {
         session.beginTransaction();
         session.save(object);
         session.getTransaction().commit();
@@ -22,17 +27,12 @@ public class ProductDAOImpl implements ProductDAO, DAO {
     }
 
     @Override
-    public Object get(Class clazz, int id) {
-        return null;
-    }
-
-    @Override
-    public void update(Object object) {
+    public void update(Product object) {
 
     }
 
     @Override
-    public void delete(Object object) {
+    public void delete(Product object) {
 
     }
 }
