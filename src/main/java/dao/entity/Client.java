@@ -32,10 +32,76 @@ public class Client extends Visitor {
 
     //<editor-fold desc="GET/SET">
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public int getAppartment() {
+        return appartment;
+    }
+
+    public void setAppartment(int appartment) {
+        this.appartment = appartment;
+    }
+
     //</editor-fold>
 
     //<editor-fold desc="Constructors">
 
+    public Client(String city, String country, Date date, String street, String house, int appartment) {
+        this.city = city;
+        this.country = country;
+        this.date = date;
+        this.street = street;
+        this.house = house;
+        this.appartment = appartment;
+    }
+
+    public Client(Cart cart, String firstName, String lastName, String email, String password, int administratorRights, String city, String country, Date date, String street, String house, int appartment) {
+        super(cart, firstName, lastName, email, password, administratorRights);
+        this.city = city;
+        this.country = country;
+        this.date = date;
+        this.street = street;
+        this.house = house;
+        this.appartment = appartment;
+    }
 
     public Client() {
     }

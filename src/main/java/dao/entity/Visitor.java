@@ -1,6 +1,7 @@
 package dao.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "visitor")
@@ -14,7 +15,7 @@ public class Visitor {
 
     @OneToOne
     @JoinColumn(name = "cart")       //
-    Cart cart;
+    private Cart cart;
 
     @Column(name = "first_name")
     private String firstName;
@@ -37,8 +38,32 @@ public class Visitor {
 
     //<editor-fold desc="Constructor">
 
+    public Visitor(Cart cart, String firstName, String lastName, String email, String password, int administratorRights) {
+        this.cart = cart;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.administratorRights = administratorRights;
+    }
 
     public Visitor() {
     }
     //</editor-fold>
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Visitor visitor = (Visitor) o;
+        return id == visitor.id &&
+                administratorRights == visitor.administratorRights &&
+                Objects.equals(email, visitor.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, administratorRights);
+    }
 }
