@@ -1,28 +1,23 @@
-import dao.HibernateUtil;
-import dao.entity.Product;
+import dao.entity.Client;
 import dao.exceptions.EntityException;
-import dao.impls.ProductApp;
+import dao.impls.ClientApp;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ProductApp pr = new ProductApp();
-
-        pr.setEntityManager(HibernateUtil.getEntityManager());
-
-        Product product = new Product();
-
-        product.setInStock(20);
-        product.setName("Twelve");
-        System.out.println(product);
+        ClientApp app = new ClientApp();
 
         try {
 
-            pr.create(product);
+            Client client = new Client();
+
+            app.create(client);
 
         } catch (EntityException e) {
             e.printStackTrace();
         }
+
     }
 }

@@ -17,11 +17,9 @@ public class Product {
     @JoinColumn(name = "parameter")
     private Parameter parameter;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) //
-    @JoinTable(name = "products_has_categories",
-            joinColumns = @JoinColumn(name = "productID"),
-            inverseJoinColumns = @JoinColumn(name = "categoryID"))
-    private List<Category> categories;
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Category category;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) //
     @JoinTable(name = "carts_has_products",
@@ -59,14 +57,6 @@ public class Product {
         this.parameter = parameter;
     }
 
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
     public List<Cart> getCarts() {
         return carts;
     }
@@ -99,13 +89,22 @@ public class Product {
         this.inStock = inStock;
     }
 
-    //</editor-fold>
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+//</editor-fold>
 
     //<editor-fold desc="Constructor">
 
-    public Product(Parameter parameter, List<Category> categories, List<Cart> carts, List<Order> orrders, String name, int inStock) {
+
+    public Product(Parameter parameter, Category category, List<Cart> carts, List<Order> orrders, String name, int inStock) {
         this.parameter = parameter;
-        this.categories = categories;
+        this.category = category;
         this.carts = carts;
         this.orrders = orrders;
         this.name = name;
@@ -118,27 +117,30 @@ public class Product {
 
 
     @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", parameter=" + parameter +
+                ", category=" + category +
+                ", name='" + name + '\'' +
+                ", inStock=" + inStock +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return id == product.id &&
+                Objects.equals(parameter, product.parameter) &&
+                Objects.equals(category, product.category) &&
                 Objects.equals(name, product.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "parameter=" + parameter +
-                ", categories=" + categories +
-                ", name='" + name + '\'' +
-                ", inStock=" + inStock +
-                '}';
+        return Objects.hash(id, parameter, category, name);
     }
 }
 

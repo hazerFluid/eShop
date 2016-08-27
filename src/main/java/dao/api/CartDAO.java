@@ -1,14 +1,15 @@
 package dao.api;
 
+import dao.entity.Cart;
 import dao.entity.Product;
 import dao.exceptions.CartException;
 
 public interface CartDAO {
 
-    void addProduct(Product product) throws CartException;
+    void addProduct(Cart cart, Product product) throws CartException;
 
-    void addProductById(int id) throws CartException;
+    void removeProduct(Cart cart, Product product) throws CartException;
 
-    void clearProductList() throws CartException;
+    void clearProductList(Cart cart) throws CartException;
 
 }

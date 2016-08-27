@@ -1,12 +1,13 @@
 package dao.api;
 
+import dao.entity.Product;
 import dao.exceptions.EntityException;
 
 import java.util.List;
 
 public interface GenericDAO<T, PK> {
 
-    /**Get all objects from database*/
+    /** Gets all objects of T type from Database*/
     List<T> getAll();
 
     /** Save object to database */

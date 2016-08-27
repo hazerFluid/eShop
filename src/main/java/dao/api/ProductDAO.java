@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ProductDAO {
 
-    Product getProductByParameters(Parameter parameter) throws ProductException;
+    List<Product> getProductByParameters(Parameter parameter) throws ProductException;
 
-    List<Product> findProductsByCategory(int categoryId) throws ProductException;
+    List<Product> getProductsByCategory(String categoryName) throws ProductException;
 
 }
