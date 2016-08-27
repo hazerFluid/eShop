@@ -1,38 +1,22 @@
 package dao.impls;
 
-import dao.api.DAO;
 import dao.api.ProductDAO;
+import dao.entity.Parameter;
 import dao.entity.Product;
-import hibernate.HibernateUtil;
-import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import dao.exceptions.ProductException;
 
-public class ProductApp implements ProductDAO, DAO<Product> {
+import java.util.List;
 
-    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    Logger logger = LoggerFactory.getLogger(Product.class);
+public class ProductApp extends GenericDAOImpl<Product, Integer> implements ProductDAO {
 
+    // TODO: 26.08.2016
     @Override
-    public Product get(Class clazz, int id) {
+    public Product getProductByParameters(Parameter parameter) throws ProductException {
         return null;
     }
 
     @Override
-    public void create(Product object) {
-        session.beginTransaction();
-        session.save(object);
-        session.getTransaction().commit();
-        logger.info("Object created" + object.toString());
-    }
-
-    @Override
-    public void update(Product object) {
-
-    }
-
-    @Override
-    public void delete(Product object) {
-
+    public List<Product> findProductsByCategory(int categoryId) throws ProductException {
+        return null;
     }
 }

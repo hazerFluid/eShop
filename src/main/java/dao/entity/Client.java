@@ -29,8 +29,18 @@ public class Client extends Visitor {
     @Column(name = "appartment")
     private int appartment;
 
+    @Column(name = "administrator_rights")
+    private boolean administratorRights;
 
     //<editor-fold desc="GET/SET">
+
+    public boolean getAdministratorRights() {
+        return administratorRights;
+    }
+
+    public void setAdministratorRights(boolean administratorRights) {
+        this.administratorRights = administratorRights;
+    }
 
     public String getCity() {
         return city;
@@ -84,23 +94,25 @@ public class Client extends Visitor {
 
     //<editor-fold desc="Constructors">
 
-    public Client(String city, String country, Date date, String street, String house, int appartment) {
+    public Client(Cart cart, String firstName, String lastName, String email, String password, String city, String country, Date date, String street, String house, int appartment, boolean administratorRights) {
+        super(cart, firstName, lastName, email, password);
         this.city = city;
         this.country = country;
         this.date = date;
         this.street = street;
         this.house = house;
         this.appartment = appartment;
+        this.administratorRights = administratorRights;
     }
 
-    public Client(Cart cart, String firstName, String lastName, String email, String password, int administratorRights, String city, String country, Date date, String street, String house, int appartment) {
-        super(cart, firstName, lastName, email, password, administratorRights);
+    public Client(String city, String country, Date date, String street, String house, int appartment, boolean administratorRights) {
         this.city = city;
         this.country = country;
         this.date = date;
         this.street = street;
         this.house = house;
         this.appartment = appartment;
+        this.administratorRights = administratorRights;
     }
 
     public Client() {

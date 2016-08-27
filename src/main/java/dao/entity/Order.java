@@ -1,5 +1,10 @@
 package dao.entity;
 
+import dao.entity.enums.DeliveryMethod;
+import dao.entity.enums.DeliveryStatus;
+import dao.entity.enums.PaymentMethod;
+import dao.entity.enums.PaymentStatus;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -26,17 +31,21 @@ public class Order {
     @Column(name = "value", length = 20)
     private int value;
 
-    @Column(name = "payment_method")
-    private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method", nullable = false)
+    private PaymentMethod paymentMethod;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "delivery_method")
-    private String deliveryMethod;
+    private DeliveryMethod deliveryMethod;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "payment_status")
-    private String paymentStatus;
+    private PaymentStatus paymentStatus;
 
-    @Column(name = "delivery_status", length = 20)
-    private String deliveryStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "delivery_status")
+    private DeliveryStatus deliveryStatus;
 
     //<editor-fold desc="GET/SET">
     public int getId() {
@@ -71,41 +80,43 @@ public class Order {
         this.value = value;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getDeliveryMethod() {
+    public DeliveryMethod getDeliveryMethod() {
         return deliveryMethod;
     }
 
-    public void setDeliveryMethod(String deliveryMethod) {
+    public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
 
-    public String getPaymentStatus() {
+    public PaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
-    public String getDeliveryStatus() {
+    public DeliveryStatus getDeliveryStatus() {
         return deliveryStatus;
     }
 
-    public void setDeliveryStatus(String deliveryStatus) {
+    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
-    public Order(Cart cart, List<Product> products, int value, String paymentMethod, String deliveryMethod, String paymentStatus, String deliveryStatus) {
+
+    public Order(Cart cart, List<Product> products, int value, PaymentMethod paymentMethod, DeliveryMethod deliveryMethod, PaymentStatus paymentStatus, DeliveryStatus deliveryStatus) {
         this.cart = cart;
         this.products = products;
         this.value = value;
@@ -117,8 +128,8 @@ public class Order {
 
     public Order() {
     }
-    //</editor-fold>
 
+    //</editor-fold>
 
     @Override
     public boolean equals(Object o) {
@@ -126,17 +137,14 @@ public class Order {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return id == order.id &&
-                value == order.value &&
-                Objects.equals(cart, order.cart) &&
-                Objects.equals(products, order.products) &&
-                Objects.equals(paymentMethod, order.paymentMethod) &&
-                Objects.equals(deliveryMethod, order.deliveryMethod) &&
-                Objects.equals(paymentStatus, order.paymentStatus) &&
-                Objects.equals(deliveryStatus, order.deliveryStatus);
+                paymentMethod == order.paymentMethod &&
+                deliveryMethod == order.deliveryMethod &&
+                paymentStatus == order.paymentStatus &&
+                deliveryStatus == order.deliveryStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cart, products, value, paymentMethod, deliveryMethod, paymentStatus, deliveryStatus);
+        return Objects.hash(id, paymentMethod, deliveryMethod, paymentStatus, deliveryStatus);
     }
 }

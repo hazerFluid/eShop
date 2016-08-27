@@ -1,13 +1,15 @@
 package dao.api;
 
 import dao.entity.Category;
+
 import java.util.List;
 
 public interface CategoryDAO {
 
-    void createCategory(Category category);
-    void updateCategory(Category category);
-    Category findCategoryById(Long id);
+    Category findCategoryById(int id);
+
+    Category findCategoryByName(String name);
+
     List<Category> findAllCategories();
 
 }
