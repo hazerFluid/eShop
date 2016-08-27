@@ -29,22 +29,70 @@ public class Visitor {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "administrator_rights")
-    private int administratorRights;
+
 
     //<editor-fold desc="GET/SET">
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
 
-    public Visitor(Cart cart, String firstName, String lastName, String email, String password, int administratorRights) {
+    public Visitor(Cart cart, String firstName, String lastName, String email, String password) {
         this.cart = cart;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.administratorRights = administratorRights;
+
     }
 
     public Visitor() {
@@ -57,12 +105,11 @@ public class Visitor {
         if (o == null || getClass() != o.getClass()) return false;
         Visitor visitor = (Visitor) o;
         return id == visitor.id &&
-                administratorRights == visitor.administratorRights &&
                 Objects.equals(email, visitor.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, administratorRights);
+        return Objects.hash(id, email);
     }
 }

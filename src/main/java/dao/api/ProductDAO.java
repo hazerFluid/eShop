@@ -2,20 +2,14 @@ package dao.api;
 
 import dao.entity.Parameter;
 import dao.entity.Product;
+import dao.exceptions.ProductException;
 
 import java.util.List;
 
 public interface ProductDAO {
 
-    void updateProduct(Product product);
+    Product getProductByParameters(Parameter parameter) throws ProductException;
 
-    void createProduct(Product product);
-
-    Product getProductByParameters(Parameter parameter);
-
-    List<Product> findProductsByCategory(int categoryId);
-
-    Product findProductById(int productId);
-
+    List<Product> findProductsByCategory(int categoryId) throws ProductException;
 
 }
