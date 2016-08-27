@@ -14,7 +14,7 @@
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         <property name="hibernate.current_session_context_class">thread</property>
 
         <!-- Mapping files -->
@@ -25,7 +25,7 @@
         <mapping class="dao.entity.Order"/>
         <mapping class="dao.entity.Product"/>
         <mapping class="dao.entity.Parameter"/>
-        <mapping class="dao.entity.Visitor"/>
+        <mapping class="dao.entity.Adres"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -1,119 +1,58 @@
 package dao.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "client")
-@PrimaryKeyJoinColumn(name = "client_id")
-public class Client extends Visitor {
+public class Client {
 
-    @Column(name = "city")
-    private String city;
+    @Id
+    @GeneratedValue
+    @Column(name = "client_id")
+    private int id;
 
-    @Column(name = "country")
-    private String country;
+    @OneToOne(mappedBy = "client")//
+    private Cart cart;
+
+    @OneToMany(mappedBy = "client") //
+    private List<Order> orders;
+
+    @OneToOne(mappedBy = "client")
+    private Adres adres;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "administrator_rights")
+    private boolean administratorRights;
 
     @Column(name = "birthday")
     @Temporal(value=TemporalType.DATE)
     private Date date;
 
-    @Column(name = "street")
-    private String street;
 
-    @Column(name = "house")
-    private String house;
 
-    @Column(name = "appartment")
-    private int appartment;
 
-    @Column(name = "administrator_rights")
-    private boolean administratorRights;
+
 
     //<editor-fold desc="GET/SET">
 
-    public boolean getAdministratorRights() {
-        return administratorRights;
-    }
 
-    public void setAdministratorRights(boolean administratorRights) {
-        this.administratorRights = administratorRights;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getHouse() {
-        return house;
-    }
-
-    public void setHouse(String house) {
-        this.house = house;
-    }
-
-    public int getAppartment() {
-        return appartment;
-    }
-
-    public void setAppartment(int appartment) {
-        this.appartment = appartment;
-    }
 
     //</editor-fold>
 
     //<editor-fold desc="Constructors">
-
-    public Client(Cart cart, String firstName, String lastName, String email, String password, String city, String country, Date date, String street, String house, int appartment, boolean administratorRights) {
-        super(cart, firstName, lastName, email, password);
-        this.city = city;
-        this.country = country;
-        this.date = date;
-        this.street = street;
-        this.house = house;
-        this.appartment = appartment;
-        this.administratorRights = administratorRights;
-    }
-
-    public Client(String city, String country, Date date, String street, String house, int appartment, boolean administratorRights) {
-        this.city = city;
-        this.country = country;
-        this.date = date;
-        this.street = street;
-        this.house = house;
-        this.appartment = appartment;
-        this.administratorRights = administratorRights;
-    }
 
     public Client() {
     }

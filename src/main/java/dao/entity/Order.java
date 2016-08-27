@@ -19,8 +19,8 @@ public class Order {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "cart") //
-    private Cart cart;
+    @JoinColumn(name = "client")
+    private Client client;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) //
     @JoinTable(name = "orrder_has_products",
@@ -54,14 +54,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public List<Product> getProducts() {
@@ -116,35 +108,8 @@ public class Order {
 
     //<editor-fold desc="Constructor">
 
-    public Order(Cart cart, List<Product> products, int value, PaymentMethod paymentMethod, DeliveryMethod deliveryMethod, PaymentStatus paymentStatus, DeliveryStatus deliveryStatus) {
-        this.cart = cart;
-        this.products = products;
-        this.value = value;
-        this.paymentMethod = paymentMethod;
-        this.deliveryMethod = deliveryMethod;
-        this.paymentStatus = paymentStatus;
-        this.deliveryStatus = deliveryStatus;
-    }
-
     public Order() {
     }
 
     //</editor-fold>
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id == order.id &&
-                paymentMethod == order.paymentMethod &&
-                deliveryMethod == order.deliveryMethod &&
-                paymentStatus == order.paymentStatus &&
-                deliveryStatus == order.deliveryStatus;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, paymentMethod, deliveryMethod, paymentStatus, deliveryStatus);
-    }
 }

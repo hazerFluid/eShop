@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface CategoryDAO {
 
-    Category findCategoryById(int id);
+    Category getCategoryById(int id);
 
-    Category findCategoryByName(String name);
+    Category getCategoryByName(String name);
 
-    List<Category> findAllCategories();
+    List<Category> getAllCategories();
 
 }
