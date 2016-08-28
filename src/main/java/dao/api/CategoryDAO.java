@@ -4,7 +4,7 @@ import dao.entity.Category;
 
 import java.util.List;
 
-public interface CategoryDAO {
+public interface CategoryDAO extends GenericDAO<Category, Integer> {
 
     Category getCategoryById(int id);
 

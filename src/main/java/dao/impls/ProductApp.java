@@ -8,7 +8,11 @@ import dao.exceptions.ProductException;
 import javax.persistence.Query;
 import java.util.List;
 
-public class ProductApp extends GenericDAOImpl<Product, Integer> implements ProductDAO { //
+public class ProductApp extends GenericDAOImpl<Product, Integer> implements ProductDAO {
+
+    public ProductApp(Class<Product> aClass) {
+        super(aClass);
+    }
 
     @Override
     public List<Product> getProductByParameters(Parameter parameter) throws ProductException {

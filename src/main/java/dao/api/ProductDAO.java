@@ -6,7 +6,7 @@ import dao.exceptions.ProductException;
 
 import java.util.List;
 
-public interface ProductDAO {
+public interface ProductDAO extends GenericDAO<Product, Integer>{
 
     List<Product> getProductByParameters(Parameter parameter) throws ProductException;
 

@@ -4,7 +4,7 @@ import dao.entity.Cart;
 import dao.entity.Product;
 import dao.exceptions.CartException;
 
-public interface CartDAO {
+public interface CartDAO extends GenericDAO<Cart, Integer>  {
 
     void addProduct(Cart cart, Product product) throws CartException;
 

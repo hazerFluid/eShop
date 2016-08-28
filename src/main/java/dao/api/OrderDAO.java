@@ -4,7 +4,7 @@ import dao.entity.Order;
 
 import java.util.List;
 
-public interface OrderDAO {
+public interface OrderDAO extends GenericDAO<Order, Integer>{
 
     List<Order> findAllOrdersByClientId(int clientId);
 
