@@ -1,30 +1,32 @@
 import dao.entity.Cart;
 import dao.entity.Client;
-import dao.exceptions.EntityException;
-import dao.impls.ClientApp;
+import dao.exceptions.ClientException;
+import service.impls.ClientServiceImpl;
 
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ClientApp app = new ClientApp();
+        ClientServiceImpl clientService = new ClientServiceImpl();
 
         try {
 
             Client client = new Client();
             Cart cart = new Cart();
 
-            client.setFirstName("Lopat");
-            client.setLastName("Asimov");
+            client.setFirstName("Dimonn");
+            client.setLastName("Eltsin");
 
             cart.setClient(client);
             client.setCart(cart);
 
-            app.save(client);
+            clientService.createClient(client);
 
-        } catch (EntityException e) {
+        } catch (ClientException e) {
+
             e.printStackTrace();
+
         }
 
     }
